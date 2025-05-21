@@ -1,0 +1,45 @@
+params:
+  training_experiment: reconstruction.train_autoformer
+  validation_metric: best_f1_score
+  evaluation_metrics:
+    - auc
+    - best_f1_score
+    - auprc
+dataset:
+  name: AppleDataset
+training_param_updates:
+  dataset:
+    name: AppleDataset
+  training:
+    epochs: 100
+training_param_grid:
+  model_params:
+    moving_avg:
+      - 25
+    model_dim:
+      - 64
+      - 128
+    dropout:
+      - 0.0
+      - 0.1
+    attention_factor:
+      - 1
+    num_heads:
+      - 8
+    fcn_dim:
+      - 64
+      - 128
+    activation:
+      - gelu
+    encoder_layers:
+      - 3
+  dataset:
+    pipeline:
+      window:
+        args:
+          window_size:
+            - 10
+            - 50
+            - 100
+            - 200
+

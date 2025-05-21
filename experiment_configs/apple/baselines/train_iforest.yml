@@ -1,0 +1,35 @@
+params:
+  training_experiment: baselines.train_iforest
+  validation_metric: best_f1_score
+  evaluation_metrics:
+    - auc
+    - best_f1_score
+    - auprc
+dataset:
+  name: AppleDataset
+training_param_updates:
+  dataset:
+    name: AppleDataset
+  training:
+    epochs: 1
+training_param_grid:
+  dataset:
+    pipeline:
+      window:
+        args:
+          window_size:
+            - 5
+            - 10
+          step_size:
+            - 1
+            - 5
+detector_param_grid:
+  detector_params:
+    n_trees:
+      - 100
+      - 200
+      - 500
+    max_samples:
+      - null
+      - 0.5
+

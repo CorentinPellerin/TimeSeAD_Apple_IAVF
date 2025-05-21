@@ -1,0 +1,24 @@
+params:
+  training_experiment: baselines.train_wmd_ad
+  validation_metric: best_f1_score
+  evaluation_metrics:
+    - auc
+    - best_f1_score
+    - auprc
+dataset:
+  name: AppleDataset
+training_param_updates:
+  dataset:
+    name: AppleDataset
+  training:
+    epochs: 1
+detector_param_grid:
+  detector_params:
+    first_diffs:
+      - False
+    cum_method:
+      - mean
+    feature_index:
+      - null
+    full_cov:
+      - True

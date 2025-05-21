@@ -1,0 +1,8 @@
+log/
+debug_log/
+__pycache__
+.vscode
+*.egg-info*
+
+/data/*
+!timesead/data/

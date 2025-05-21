@@ -1,0 +1,44 @@
+params:
+  training_experiment: generative.gan.train_lstm_vae_gan_on_iavf
+  validation_metric: best_f1_score
+  evaluation_metrics:
+    - auc
+    - best_f1_score
+    - auprc
+dataset:
+  name: IAVFDataset
+training_param_updates:
+  dataset:
+    name: IAVFDataset
+  training:
+    epochs: 2
+training_param_grid:
+  model_params:
+    lstm_hidden_dims:
+      - [60]
+    latent_dim:
+      - 10
+      #- 35
+  dataset:
+    pipeline:
+      window:
+        args:
+          window_size:
+            - 10
+            #- 50
+            #- 100
+  training:
+    optimizer:
+      args:
+        lr:
+          #- 1.0e-4
+          #- 1.0e-3
+          - 1.0e-2
+detector_param_grid:
+  detector_params:
+    alpha:
+      - 0.1
+      #- 0.3
+      #- 0.5
+      #- 0.7
+      #- 0.9
